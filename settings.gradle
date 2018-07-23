@@ -1,3 +1,4 @@
 rootProject.name = 'prod-enricher'
 include 'metadata'
+include 'crawler'
 

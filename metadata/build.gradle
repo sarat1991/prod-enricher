@@ -5,7 +5,6 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.2"
     }
 }
@@ -23,10 +22,18 @@ apply plugin:"org.grails.grails-gsp"
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://dl.bintray.com/ajay-kumar/plugins" }
 }
 
 dependencies {
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+//    compile 'org.grails.plugins:swagger:1.0.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.3.0'
+    compile 'com.google.apis:google-api-services-youtube:v3-rev204-1.23.0'
+    compile 'org.grails.plugins:mongodb:6.1.4'
+    compileOnly 'com.gmongo:gmongo:1.5'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
     compile "org.springframework.boot:spring-boot-starter-logging"
@@ -46,13 +53,10 @@ dependencies {
     compile "org.grails.plugins:async"
     compile "org.grails.plugins:scaffolding"
     compile "org.grails.plugins:events"
-    compile "org.grails.plugins:hibernate5"
-    compile "org.hibernate:hibernate-core:5.1.5.Final"
     compile "org.grails.plugins:gsp"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
-    runtime "com.h2database:h2"
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.2"
     testCompile "org.grails:grails-gorm-testing-support"
@@ -63,8 +67,9 @@ dependencies {
 }
 
 bootRun {
-    jvmArgs('-Dspring.output.ansi.enabled=always')
-    addResources = true
+    jvmArgs = [
+            "-Dlogging.config=${project.projectDir}/grails-app/conf/logback.groovy"
+    ]
 }
 
 
