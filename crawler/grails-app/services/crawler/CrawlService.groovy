@@ -8,16 +8,23 @@ import org.openqa.selenium.chrome.ChromeOptions
 import java.util.concurrent.TimeUnit
 
 class CrawlService {
+    def grailsApplication
+    private final static String CATEGORY = "category"
+    private final static String LAPTOP = "Laptop"
+    private final static String MOBILE = "Mobile"
+    private final static String BEYOUND_SCOPE = " The crawler can't scrap the particular product info."
 
     /**
      * Scraper works for camera, mobile, laptop..
      *
      * */
     private def initDriver() {
-        String exePath = "/home/saraths/Softwares/chromedriver"
-        System.setProperty("webdriver.chrome.driver", exePath);
+//        String exePath = "/home/saraths/Softwares/chromedriver"
+        String driverPath = grailsApplication.config.crawler.driver
+        System.setProperty("webdriver.chrome.driver", driverPath);
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setBinary("/usr/bin/google-chrome");
+        String exePath = grailsApplication.config.crawler.browser
+        chromeOptions.setBinary(exePath);
         chromeOptions.addArguments("--headless");
         ChromeDriver driver=new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -36,7 +43,7 @@ class CrawlService {
             return null
         /* Category check */
         updateCategory(response, driver)
-        if(!response.get("category"))
+        if(!response.get(CATEGORY))
             return null
         /* Retrieving product Identifier*/
        response.put("productIdentifier", getProductIdentifier(driver))
@@ -70,7 +77,7 @@ class CrawlService {
             }
         }
         if(!isTechDetailPresent || technical_Details.size() == 0){
-            log.info(" The crawler can't scrap the particular product info.")
+            System.out.println(BEYOUND_SCOPE)
             return false
         }
         return true
@@ -84,7 +91,7 @@ class CrawlService {
         String productName = "";
         if (productTitle.size() != 0){
             String title = driver.findElements(By.xpath("//span[@id='productTitle']")).get(0).text
-            productName = title.substring(0,title.trim().lastIndexOf('(')-1);
+            productName = title.substring(0,title.trim().lastIndexOf('(')>1?title.trim().lastIndexOf('(')-1: title.size());
         }
         return  productName
     }
@@ -95,10 +102,10 @@ class CrawlService {
         if(!productCategory){
             response << [category: null]
         }
-        else if(productCategory.contains("Laptop")){
+        else if(productCategory.contains(LAPTOP)){
             response <<[category : "laptop"]
         }
-        else if(productCategory.contains("Mobile")){
+        else if(productCategory.contains(MOBILE)){
             response <<[category: "mobile"]
         }
 

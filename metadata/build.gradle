@@ -16,26 +16,22 @@ apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"war"
 apply plugin:"org.grails.grails-web"
-apply plugin:"asset-pipeline"
-apply plugin:"org.grails.grails-gsp"
 
 repositories {
     mavenLocal()
-    maven { url "https://repo.grails.org/grails/core" }
     maven { url "https://dl.bintray.com/ajay-kumar/plugins" }
+    maven { url "https://repo.grails.org/grails/core" }
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-//    compile 'org.grails.plugins:swagger:1.0.0'
+    compile 'org.grails.plugins:swagger:1.0.0'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.4.2.Final'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.3.0'
     compile 'com.google.apis:google-api-services-youtube:v3-rev204-1.23.0'
     compile 'org.grails.plugins:mongodb:6.1.4'
     compileOnly 'com.gmongo:gmongo:1.5'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
@@ -59,21 +55,10 @@ dependencies {
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.2"
-    testCompile "org.grails:grails-gorm-testing-support"
-    testCompile "org.grails.plugins:geb"
-    testCompile "org.grails:grails-web-testing-support"
-    testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
-    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 }
 
-bootRun {
+/*bootRun {
     jvmArgs = [
             "-Dlogging.config=${project.projectDir}/grails-app/conf/logback.groovy"
     ]
-}
-
-
-assets {
-    minifyJs = true
-    minifyCss = true
-}
+}*/

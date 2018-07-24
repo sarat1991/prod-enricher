@@ -8,9 +8,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        "/bootstrap"(controller: Queue, action: [GET:'index'])
-        "/"(view:"/index")
-        "500"(view:'/error')
-        "404"(view:'/notFound')
+        "/"(controller: 'crawler', action: 'index')
+        "500"(controller: 'crawler', action: 'error')
+        "404"(controller: 'crawler', action: 'notFound')
     }
 }

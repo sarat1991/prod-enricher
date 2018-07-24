@@ -87,5 +87,8 @@ grails:
                 taglib: none
                 staticparts: none
 youtube:
-    apikey: AIzaSyAAtCZRVLsFyYgnjLxdxngpf2wQmUWn7-w
+    apikey: ${YOUTUBE_API_KEY}
+queue:
+    host: ${QUEUE_HOST} #localhost
+
 

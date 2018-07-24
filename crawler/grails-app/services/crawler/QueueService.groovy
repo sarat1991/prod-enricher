@@ -5,6 +5,7 @@ import com.rabbitmq.client.*;
 class QueueService {
 
     def crawlService
+    def grailsApplication
 
     private final String RECEIVER_QUEUE_NAME = "Product";
     private final String SENDER_QUEUE_NAME = "Details";
@@ -12,13 +13,12 @@ class QueueService {
     Channel channel
     def bootStrap() {
         ConnectionFactory factory = new ConnectionFactory()
-        factory.setHost("localhost");
+        factory.setHost(grailsApplication.config.queue.host);
         connection = factory.newConnection()
         channel = connection.createChannel()
-        receive()
     }
 
-    private void receive(){
+    void receive(){
         channel.queueDeclare(RECEIVER_QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages");
         Consumer consumer = new DefaultConsumer(channel) {
@@ -29,7 +29,7 @@ class QueueService {
                 System.out.println(" [x] Received '" + productUrl + "'");
                 def response = crawlService.getProductDetails(productUrl)
                 if(response == null)
-                    response = [categrory: "invalidCategory"]
+                    response = [category: "invalidCategory"]
                 response << [productUrl : productUrl]
                 postMessage(response)
             }

@@ -28,7 +28,7 @@ class Electronics {
     }
     static constraints = {
         url unique: true
-        identifier unique: true
+        identifier nullable: true
         os nullable: true
         ram nullable: true
         itemWeight nullable: true

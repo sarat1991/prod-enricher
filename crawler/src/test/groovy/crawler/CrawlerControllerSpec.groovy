@@ -1,10 +1,9 @@
-package metadata.com
+package crawler
 
-import grails.testing.services.ServiceUnitTest
-
+import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-class YoutubeProcessServiceSpec extends Specification implements ServiceUnitTest<YoutubeProcessService>{
+class CrawlerControllerSpec extends Specification implements ControllerUnitTest<CrawlerController> {
 
     def setup() {
     }

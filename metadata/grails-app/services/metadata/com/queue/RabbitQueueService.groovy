@@ -1,21 +1,24 @@
-package metadata
+package metadata.com.queue
 
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.*
+import com.traits.MessageQueue
 
-class QueueService {
+class RabbitQueueService implements MessageQueue {
 
     Channel channel
     Connection connection
     def productInfoService
+    def grailsApplication
     private final String SENDER_QUEUE_NAME = "Product"
     private final String RECEIVER_QUEUE_NAME = "Details"
 
+
     def bootstrap() {
+        String host = grailsApplication.config.queue.host
         ConnectionFactory factory = new ConnectionFactory()
-        factory.setHost("localhost")
+        factory.setHost(host)
         connection = factory.newConnection()
         channel = connection.createChannel()
-        receive()
     }
 
     def postMessage(String message){
@@ -26,7 +29,7 @@ class QueueService {
 
     }
 
-    private void receive(){
+    void regReceiveHandler(){
         channel.queueDeclare(RECEIVER_QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages");
         Consumer consumer = new DefaultConsumer(channel) {
