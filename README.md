@@ -63,7 +63,7 @@ products, the product assumes it as "invalidCategory".
     Grails application running at http://localhost:8005/crawler/ in environment: development
 
 
-#See the Product work
+## See the Product work ##
 
   1. Now hit the url in the browser. This opens up a swagger document 
   
@@ -74,14 +74,14 @@ products, the product assumes it as "invalidCategory".
   3. Next use the /product api to get the review and feedbacks of the product(only from youtube)
   
   
-#Assumptions and Limitations
+## Assumptions and Limitations ##
 
    1. The service accepts only Amazon.in url product details page as input.
    2. Only electronics is the category, the service is tested for. Mobiles and laptop are only sub-category are valid categories. 
    3. Huge number of request like 100 requests/seconds cannot be done since the e-commerce website will block if it is done.
    
 
-#Future scope
+## Future scope ##
    1. logging needs to be done
    (under construction)
    
