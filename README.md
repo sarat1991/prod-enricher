@@ -79,6 +79,7 @@ products, the product assumes it as "invalidCategory".
    1. The service accepts only Amazon.in url product details page as input.
    2. Only electronics is the category, the service is tested for. Mobiles and laptop are only sub-category are valid categories. 
    3. Huge number of request like 100 requests/seconds cannot be done since the e-commerce website will block if it is done.
+   
 
 #Future scope
    1. logging needs to be done
