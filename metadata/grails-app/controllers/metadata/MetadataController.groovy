@@ -41,6 +41,6 @@ class MetadataController {
     }
 
     private def cleanseProductURI(String productUri){
-        return productUri.substring(0,productUri.lastIndexOf("/ref="))
+        return productUri.substring(0,productUri.lastIndexOf("/ref=")>1?productUri.lastIndexOf("/ref="):productUri.size())
     }
 }
