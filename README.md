@@ -1,7 +1,7 @@
 # Prod-Enricher #
 This service helps in enriching the product with information like reviews, feedbacks etc. based on the given e-commerce product details page. The
-service is designed only for electronics products. In particular this service takes only mobile and laptop as sub-category and for other electronics
-products, the product assumes it as "invalidCategory". 
+service is designed only for mobile and laptop as category and for other electronics products, the service assumes it as "invalidCategory". 
+
 ## Technologies used ##
 
   -  Mongo DB
@@ -16,7 +16,7 @@ products, the product assumes it as "invalidCategory".
    Install the following softwares in your local machine. 
   - mongodb
   
-  - rabbit mq ( product currently supports without username and password for rabbitmq)
+  - rabbit mq ( service currently supports without username and password for rabbitmq)
   
   - Download chrome web driver.
   
@@ -76,8 +76,8 @@ products, the product assumes it as "invalidCategory".
   
 ## Assumptions and Limitations ##
 
-   1. The service accepts only Amazon.in url product details page as input.
-   2. Only electronics is the category, the service is tested for. Mobiles and laptop are only sub-category are valid categories. 
+   1. The service only accepts amazon.in electronics product detail page as input.
+   2. In Electronics only mobiles and laptop are valid categories, others are invalid. 
    3. Huge number of request like 100 requests/seconds cannot be done since the e-commerce website will block if it is done.
    
 
