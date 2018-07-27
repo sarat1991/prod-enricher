@@ -47,7 +47,7 @@ service is designed only for mobile and laptop as category and for other electro
    ### Crawler ###
    
    1. Now navigate to the crawler directory (cd crawler)
-   2. Set the following environment variables.
+   2. Download chrome web driver and chrome browser(if doesn't exist). Then, set the following environment variables.
     
             export QUEUE_HOST=localhost
             export BROWSER_WEB_DRIVER=/home/saraths/Softwares/chromedriver
