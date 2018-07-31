@@ -2,6 +2,9 @@
 This service helps in enriching the product with information like reviews, feedbacks etc. based on the given e-commerce product details page. The
 service is designed only for mobile and laptop as category and for other electronics products, the service assumes it as "invalidCategory". 
 
+## Architecture diagram ##
+[Architecture Diagram](images/architecture.jpg)
+
 ## Technologies used ##
 
   -  Mongo DB
@@ -82,8 +85,14 @@ service is designed only for mobile and laptop as category and for other electro
    
 
 ## Future scope ##
-   1. logging needs to be done
-   (under construction)
+   1. Logging needs to be done
+   2. Retrieving the product information from other Ecommerce websites since it will be a verified and validated information. 
+   3. Adding relevant testcases. 
+   4. Extending to other categories of product.
+   5. Closing the connection immediately after taking the html source. Parsing can be done later on the retrieved html page. 
+   6. Storing the configuration of crawler seperately for each and every website. 
+   7. Having a fleet of proxies for crawling the same Ecommerce website without getting blocked. 
+   8. Getting input form another Ecommerce website (like Flipkart) and generating product identifier using the attributes from that website and matching it with already exisisting record(i.e. from Amazon.in)
    
  
  
