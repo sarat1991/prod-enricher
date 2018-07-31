@@ -3,7 +3,7 @@ This service helps in enriching the product with information like reviews, feedb
 service is designed only for mobile and laptop as category and for other electronics products, the service assumes it as "invalidCategory". 
 
 ## Architecture diagram ##
-[Architecture Diagram](images/architecture.jpg)
+![Architecture Diagram](images/architecture.jpg "diagram")
 
 ## Technologies used ##
 
